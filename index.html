@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Técnico: Expedição Chicago & Islândia 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#090d16',
+            darkcard: '#111827',
+            darkborder: '#1f2937'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .tab-active { border-color: #38bdf8; color: #38bdf8; background-color: rgba(56, 189, 248, 0.08); }
+    .status-badge { display: inline-flex; align-items: center; padding: 0.15rem 0.45rem; border-radius: 0.25rem; font-size: 0.70rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.025em; }
+    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body class="bg-darkbg text-slate-200 font-sans antialiased min-h-screen pb-12">
+
+  <!-- CABEÇALHO SUPERIOR FIXO -->
+  <header class="border-b border-darkborder bg-darkcard/95 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <h1 class="text-base font-bold tracking-tight text-sky-400 font-mono">EXPEDIÇÃO TÉCNICA: CHICAGO & ISLÂNDIA</h1>
+          <span class="bg-sky-950 text-sky-400 border border-sky-800 text-[11px] px-2 py-0.5 rounded font-mono">v1.3.0</span>
+        </div>
+        <p class="text-xs text-slate-400 mt-0.5 font-mono">02/09/2026 &rarr; 22/09/2026 | 2 VIAJANTES | BASE CONSOLIDADA</p>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <div class="text-right">
+          <div class="text-slate-500">Última Atualização:</div>
+          <div class="text-emerald-400 font-semibold">15/08/2026 - 23:45 BRT</div>
+        </div>
+        <div class="h-8 w-px bg-darkborder"></div>
+        <div class="flex gap-1.5">
+          <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">6 Prontas</span>
+          <span class="status-badge bg-amber-950 text-amber-400 border border-amber-800">2 Em Análise</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELETOR DE MÓDULOS -->
+    <nav class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-1 border-t border-darkborder/50 text-xs font-mono">
+      <button onclick="switchTab('f1')" id="btn-f1" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">01. Escopo & Voos</button>
+      <button onclick="switchTab('f2')" id="btn-f2" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">02. Hardware & Elétrica</button>
+      <button onclick="switchTab('f3')" id="btn-f3" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">03. Compras & Alfândega</button>
+      <button onclick="switchTab('f4')" id="btn-f4" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">04. Protocolos Drone</button>
+      <button onclick="switchTab('f5')" id="btn-f5" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">05. Setup DJI Fly</button>
+      <button onclick="switchTab('f6')" id="btn-f6" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">06. Vestuário Técnico</button>
+      <button onclick="switchTab('f7')" id="btn-f7" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">07. Efemérides & Luz</button>
+      <button onclick="switchTab('f8')" id="btn-f8" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">08. Status Operacional</button>
+    </nav>
+  </header>
+
+  <!-- CORPO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto p-4 space-y-6 font-mono text-xs">
+
+    <!-- FRENTE 1 -->
+    <section id="f1" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">1. Escopo Geral e Cronograma de Voos</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">PARÂMETROS GERAIS</div>
+          <div><span class="text-slate-400">Duração:</span> 21 dias (02/09/2026 a 22/09/2026)</div>
+          <div><span class="text-slate-400">Grupo:</span> 2 viajantes (titular e acompanhante)</div>
+          <div><span class="text-slate-400">Documentação:</span> Passaportes válidos + Vistos B1/B2 válidos</div>
+          <div><span class="text-slate-400">Seguro-Viagem:</span> Mastercard Black (MasterAssist US$ 175.000 DMH)</div>
+        </div>
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">MALHA AÉREA FIXA</div>
+          <div><strong>02/09/2026:</strong> Brasil &rarr; Chicago (ORD) via Washington, DC (IAD).</div>
+          <div><strong>02/09 a 07/09/2026:</strong> Estadia urbana e compras em Chicago, EUA.</div>
+          <div><strong>07/09/2026:</strong> Voo Chicago (ORD) &rarr; Reykjavík/Keflavík (KEF).</div>
+          <div><strong>08/09 a 22/09/2026:</strong> Expedição terrestre na Islândia (Ring Road).</div>
+          <div><strong>22/09/2026:</strong> Voo de retorno KEF &rarr; IAD &rarr; Brasil.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRENTE 2 -->
+    <section id="f2" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">2. Hardware de Captação e Especificações Elétricas</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">DRONE DJI AIR 3S & ÓPTICA</div>
+          <div><strong>Modelo:</strong> DJI Air 3S Fly More Combo + RC 2 (724 g)</div>
+          <div><strong>Sensores:</strong> 1" CMOS (50MP, f/1.8) + 1/1.3" CMOS (48MP, f/2.8)</div>
+          <div><strong>Armazenamento:</strong> 42 GB internos + microSDXC 256GB (UHS-I U3/V30/A2)</div>
+          <div><strong>Filtros:</strong> Freewell Bright Day Split ND/PL Kit</div>
+          <div><strong>Proteção:</strong> Case rígido IP67 (FPVtosky / Lykus)</div>
+        </div>
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">SISTEMA ELÉTRICO E BATERIAS</div>
+          <div><strong>Baterias:</strong> 3x BWX233-4241 (14,76V, 4241 mAh, 62,5 Wh)</div>
+          <div><strong>Carregamento:</strong> Hub CHX233-100 (Max 100W)</div>
+          <div><strong>Veicular:</strong> Carregador Anker 167.5W (100W PD/PPS dedicado via Buck-Boost)</div>
+          <div><strong>Cabos:</strong> USB-C para USB-C 1m, 100W/5A com chip E-Marker</div>
+          <div><strong>Tomada:</strong> Fonte GaN 100W/140W + Adaptador Tipo F (Schuko)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRENTE 3 -->
+    <section id="f3" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">3. Logística de Compra e Engenharia Tributária</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="bg-darkcard p-4 rounded border border-darkborder space-y-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-slate-500">Janela de Gatilho</div>
+            <div class="text-sky-400 font-bold text-sm">27/08/2026 às 10:00 BRT</div>
+            <div class="text-[10px] text-slate-400 mt-1">Pré-Labor Day (Amazon US).</div>
+          </div>
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-slate-500">Local de Entrega</div>
+            <div class="text-emerald-400 font-bold text-sm">Hammond / Munster (IN)</div>
+            <div class="text-[10px] text-slate-400 mt-1">Sales Tax 7,00% (Economia vs Cook 10,25%).</div>
+          </div>
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-slate-500">Retenção no Locker</div>
+            <div class="text-amber-400 font-bold text-sm">3 Dias Corridos</div>
+            <div class="text-[10px] text-slate-400 mt-1">Retirada programada para 03/09/2026.</div>
+          </div>
+        </div>
+        <div class="border-t border-darkborder pt-3">
+          <div class="font-bold text-slate-200 mb-2">ALOCAÇÃO ALFANDEGÁRIA (RECEITA FEDERAL):</div>
+          <table class="w-full text-left border border-darkborder text-[11px]">
+            <thead class="bg-slate-800/50 text-slate-400">
+              <tr>
+                <th class="p-2 border-b border-darkborder">Viajante / Cota</th>
+                <th class="p-2 border-b border-darkborder">Itens Alocados</th>
+                <th class="p-2 border-b border-darkborder">Valor Declarado</th>
+                <th class="p-2 border-b border-darkborder">Tributação Aplicável</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-darkborder">
+              <tr>
+                <td class="p-2 font-semibold text-sky-400">Titular (Cota US$ 1.000)</td>
+                <td class="p-2">DJI Air 3S Fly More Combo (RC 2)</td>
+                <td class="p-2">~US$ 1.579,00</td>
+                <td class="p-2 text-amber-400">50% sobre excedente de US$ 579 (~US$ 289,50).</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold text-sky-400">Acompanhante (Cota US$ 1.000)</td>
+                <td class="p-2">Filtros Freewell, Case FPVtosky, Carregadores Anker/GaN, MicroSD 256GB</td>
+                <td class="p-2">~US$ 204,00</td>
+                <td class="p-2 text-emerald-400">Isenção total (Dentro do limite de US$ 1.000).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRENTE 4 -->
+    <section id="f4" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">4. Protocolos Regulatórios e Espaço Aéreo</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">TRANSPORTE IATA & ESTADOS UNIDOS (FAA)</div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>Baterias (IATA):</strong> 3x BWX233-4241 (62,5 Wh) exclusivamente no carry-on a ~30% de carga. Proibido despachar.</li>
+            <li><strong>FAA (EUA):</strong> Registro <a href="https://faadronezone-access.faa.gov/" target="_blank" class="text-sky-400 underline">DroneZone</a> obrigatorio (US$ 5). ID físico afixado. Remote ID ativo.</li>
+            <li><strong>Apps EUA:</strong> AirControl (Aloft) ou AutoPylot para LAANC.</li>
+          </ul>
+        </div>
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-rose-400 font-bold border-b border-darkborder/50 pb-1">ISLÂNDIA (EASA / SAMGÖNGUSTOFA)</div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>Registro EASA:</strong> Cadastro no portal <a href="https://www.icetra.is/" target="_blank" class="text-sky-400 underline">Icetra</a> com ID etiquetado no drone.</li>
+            <li><strong>Limites:</strong> Máximo 120m AGL; distância de 50m de pessoas/fauna e 2 km de aeródromos. VLOS estrito.</li>
+            <li><strong>Exclusão Absoluta:</strong> Vatnajökull, Thingvellir, Snæfellsjökull, Jökulsárlón e cachoeiras (Skógafoss, Seljalandsfoss, Gullfoss, Dettifoss).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRENTE 5 -->
+    <section id="f5" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">5. Setup Operacional do DJI Fly</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+        <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">CONFIGURAÇÕES DE VOO E CÂMERA</div>
+        <ul class="list-disc list-inside space-y-1 text-slate-300">
+          <li><strong>Desvio de Obstáculos:</strong> Bypass (Contornar) / APAS Normal.</li>
+          <li><strong>Return to Home (RTH):</strong> Configurado a 120m com rota Preset (subida vertical antes do retorno linear).</li>
+          <li><strong>AirSense (ADS-B):</strong> Ligado (Low Risk).</li>
+          <li><strong>Captura:</strong> 4K a 24/30fps, Nitidez em -2, Fotos RAW+JPEG (50MP/48MP), Grade com Regra dos Terços e Ponto Central, LEDs Frontais em Auto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FRENTE 6 -->
+    <section id="f6" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">6. Vestuário Técnico e Segurança Térmica</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+        <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">SISTEMA DE 3 CAMADAS</div>
+        <ul class="list-disc list-inside space-y-1 text-slate-300">
+          <li><strong>Camada 1 (Base):</strong> Conjunto térmico 100% Lã Merino (200 a 250 g/m²). Algodão proibido.</li>
+          <li><strong>Camada 2 (Mid):</strong> Jaqueta de pluma compactável (Down) ou Fleece estruturado (Polartec 200).</li>
+          <li><strong>Camada 3 (Shell):</strong> Anoraque e calça impermeável/corta-vento com membrana Gore-Tex e costuras seladas.</li>
+          <li><strong>Extremidades:</strong> Luvas fotográficas com pontas magnéticas retráteis (Vallerret / The Heat Company) + aquecedores HotHands.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FRENTE 7 -->
+    <section id="f7" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">7. Efemérides e Iluminação (Setembro/2026)</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Consolidado</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">CHICAGO (CDT)</div>
+          <div><strong>02/09:</strong> Sol 06:17-19:22 | Pôr da Lua 12:31 | Minguante (71%)</div>
+          <div><strong>04/09:</strong> Sol 06:19-19:18 | Pôr da Lua 14:58 | Quarto Minguante (48%)</div>
+          <div><strong>07/09:</strong> Sol 06:22-19:13 | Nascer da Lua 01:56 | Minguante (15%)</div>
+        </div>
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">ISLÂNDIA (GMT)</div>
+          <div><strong>08 a 15/09:</strong> Janela de Aurora Boreal (Lua Minguante até Lua Nova em 11/09 - 0% iluminação; escuridão máxima).</div>
+          <div><strong>17 a 19/09:</strong> Lua abaixo do horizonte durante a noite.</div>
+          <div><strong>20 a 22/09:</strong> Fotografia de Relevo (Lua Crescente 69%-85%; iluminação lateral de montanhas).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRENTE 8 -->
+    <section id="f8" class="tab-content hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2">
+        <h2 class="text-sm font-bold text-sky-400 uppercase">8. Status das Frentes de Trabalho</h2>
+        <span class="status-badge bg-amber-950 text-amber-400 border border-amber-800">Em Análise</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-amber-400 font-bold border-b border-darkborder/50 pb-1">VEÍCULO 4X4 & SEGUROS NA ISLÂNDIA</div>
+          <p class="text-slate-300">Em análise. Requer definição de locadora local e pacotes com franquia zero, Gravel Protection (GP), Sand & Ash (SADW) e homologação para estradas F.</p>
+        </div>
+        <div class="bg-darkcard p-4 rounded border border-darkborder space-y-2">
+          <div class="text-amber-400 font-bold border-b border-darkborder/50 pb-1">ROTEIROS & HOSPEDAGENS</div>
+          <p class="text-slate-300">Em análise/pendente. Mapeamento de sentido na Ring Road (anti-horário recomendado), tempos de deslocamento (80-90 km/h asfalto; 20-40 km/h cascalho), hotéis em Chicago e cabanas na Islândia.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPT DE ABAS -->
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('tab-active'));
+      
+      document.getElementById(tabId).classList.remove('hidden');
+      document.getElementById('btn-' + tabId).classList.add('tab-active');
+    }
+    switchTab('f1');
+  </script>
+</body>
+</html>
