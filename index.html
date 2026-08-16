@@ -13,448 +13,484 @@
           colors: {
             darkbg: '#090d16',
             darkcard: '#111827',
-            darkborder: '#1f2937',
-            accent: '#38bdf8'
+            darkborder: '#1f2937'
           }
         }
       }
     }
   </script>
   <style>
-    .tab-active { border-color: #38bdf8; color: #38bdf8; background-color: rgba(56, 189, 248, 0.08); }
-    .status-badge { display: inline-flex; align-items: center; padding: 0.15rem 0.45rem; border-radius: 0.25rem; font-size: 0.70rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.025em; }
-    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .tab-active { border-color: #38bdf8; color: #38bdf8; background-color: rgba(56, 189, 248, 0.12); font-weight: 700; }
+    .status-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.55rem; border-radius: 0.3rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+    body { font-size: 0.925rem; line-height: 1.5; }
   </style>
 </head>
-<body class="bg-darkbg text-slate-200 font-sans antialiased min-h-screen pb-12">
+<body class="bg-darkbg text-slate-100 font-sans antialiased min-h-screen pb-16">
 
-  <!-- CABEÇALHO SUPERIOR FIXO & EMERGÊNCIAS -->
+  <!-- CABEÇALHO SUPERIOR FIXO & CONTATOS DE EMERGÊNCIA -->
   <header class="border-b border-darkborder bg-darkcard/95 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap justify-between items-center gap-4">
       <div class="flex items-center gap-3">
-        <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse"></span>
         <div>
-          <h1 class="text-base font-bold tracking-tight text-sky-400 font-mono">PAINEL EXECUTIVO: CHICAGO & ISLÂNDIA 2026</h1>
-          <p class="text-[11px] text-slate-400 font-mono">CONSULTA RÁPIDA, DADOS DE RESERVAS & LOGÍSTICA DE CAMPO</p>
+          <h1 class="text-lg font-bold tracking-tight text-sky-400 font-mono">PAINEL EXECUTIVO: EXPEDIÇÃO 2026</h1>
+          <p class="text-xs text-slate-400 font-mono">CHICAGO & ISLÂNDIA | OPERAÇÕES, ROTAS & DADOS CRÍTICOS</p>
         </div>
       </div>
 
       <div class="flex items-center gap-2 text-xs font-mono">
-        <a href="tel:112" class="bg-rose-950 text-rose-300 border border-rose-800 px-2.5 py-1 rounded font-bold hover:bg-rose-900 transition">SOS ISLÂNDIA: 112</a>
-        <a href="tel:911" class="bg-amber-950 text-amber-300 border border-amber-800 px-2.5 py-1 rounded font-bold hover:bg-amber-900 transition">SOS EUA: 911</a>
-        <a href="tel:190" class="bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded font-bold hover:bg-slate-700 transition">SOS BR: 190</a>
+        <a href="tel:112" class="bg-rose-950 text-rose-300 border border-rose-800 px-3 py-1.5 rounded font-bold hover:bg-rose-900 transition">SOS ISLÂNDIA: 112</a>
+        <a href="tel:911" class="bg-amber-950 text-amber-300 border border-amber-800 px-3 py-1.5 rounded font-bold hover:bg-amber-900 transition">SOS EUA: 911</a>
       </div>
     </div>
 
     <!-- SELETOR DE MÓDULOS -->
-    <nav class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-1 border-t border-darkborder/50 text-xs font-mono">
-      <button onclick="switchTab('m1')" id="btn-m1" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">01. Emergência & Seguro</button>
-      <button onclick="switchTab('m2')" id="btn-m2" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">02. Voos (PNR: FNSQ4R)</button>
-      <button onclick="switchTab('m3')" id="btn-m3" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">03. Trechos Rodoviários</button>
-      <button onclick="switchTab('m4')" id="btn-m4" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">04. Base Chicago & Jazz</button>
-      <button onclick="switchTab('m5')" id="btn-m5" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">05. 4x4 KEF (Lotus QNS5BF)</button>
-      <button onclick="switchTab('m6')" id="btn-m6" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">06. Protocolo Drone</button>
-      <button onclick="switchTab('m7')" id="btn-m7" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">07. Compras & Alfândega</button>
-      <button onclick="switchTab('m8')" id="btn-m8" class="tab-btn px-3 py-2.5 border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">08. APPs & Efemérides</button>
+    <nav class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-2 border-t border-darkborder/60 text-xs font-mono py-1">
+      <button onclick="switchTab('m1')" id="btn-m1" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">01. Emergência & Seguro</button>
+      <button onclick="switchTab('m2')" id="btn-m2" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">02. Malha de Voos</button>
+      <button onclick="switchTab('m3')" id="btn-m3" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">03. Conexão IAD & Chegada ORD</button>
+      <button onclick="switchTab('m4')" id="btn-m4" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">04. Base Chicago & Linhas CTA</button>
+      <button onclick="switchTab('m5')" id="btn-m5" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">05. 4x4 KEF (Lotus QNS5BF)</button>
+      <button onclick="switchTab('m6')" id="btn-m6" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">06. Protocolo Drone</button>
+      <button onclick="switchTab('m7')" id="btn-m7" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">07. Compras & Alfândega</button>
+      <button onclick="switchTab('m8')" id="btn-m8" class="tab-btn px-3.5 py-2 rounded-t border-b-2 border-transparent hover:text-sky-300 whitespace-nowrap">08. APPs & Efemérides</button>
     </nav>
   </header>
 
   <!-- CORPO PRINCIPAL -->
-  <main class="max-w-7xl mx-auto p-4 space-y-6 font-mono text-xs">
+  <main class="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
 
     <!-- MÓDULO 1: SEGURO & EMERGÊNCIA MÉDICA -->
-    <section id="m1" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-rose-400 uppercase">01. Protocolo de Acionamento: MasterAssist Black (AIG)</h2>
+    <section id="m1" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-rose-400 uppercase font-mono">01. Protocolo de Acionamento: MasterAssist Black (AIG)</h2>
         <span class="status-badge bg-rose-950 text-rose-400 border border-rose-800">Uso Crítico</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div class="p-3 bg-darkcard rounded border border-rose-900/50 space-y-1">
-          <div class="text-slate-400 text-[10px]">AIG Assistência Internacional (A Cobrar / Collect Call)</div>
-          <div class="text-base font-bold text-white font-mono">+1-636-722-7111</div>
-          <div class="text-[10px] text-slate-400">Atendimento 24/7 em Português e Inglês.</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono">
+        <div class="p-4 bg-darkcard rounded-lg border border-rose-900/60 space-y-1.5">
+          <div class="text-slate-400 text-xs uppercase">AIG Assistência Internacional (Collect Call)</div>
+          <div class="text-lg font-bold text-white tracking-wide">+1-636-722-7111</div>
+          <div class="text-xs text-slate-400">Atendimento 24/7 em Português / Inglês.</div>
         </div>
-        <div class="p-3 bg-darkcard rounded border border-darkborder space-y-1">
-          <div class="text-slate-400 text-[10px]">Mastercard Global Service (Toll-Free EUA)</div>
-          <div class="text-base font-bold text-sky-400 font-mono">1-800-627-8372</div>
-          <div class="text-[10px] text-slate-400">Chamadas gratuitas dentro do território americano.</div>
+        <div class="p-4 bg-darkcard rounded-lg border border-darkborder space-y-1.5">
+          <div class="text-slate-400 text-xs uppercase">Mastercard Global Service (Toll-Free EUA)</div>
+          <div class="text-lg font-bold text-sky-400 tracking-wide">1-800-627-8372</div>
+          <div class="text-xs text-slate-400">Ligação gratuita em território americano.</div>
         </div>
-        <div class="p-3 bg-darkcard rounded border border-darkborder space-y-1">
-          <div class="text-slate-400 text-[10px]">Portais de Apólice & Abertura de Sinistro</div>
+        <div class="p-4 bg-darkcard rounded-lg border border-darkborder space-y-1.5">
+          <div class="text-slate-400 text-xs uppercase">Portais Oficiais de Apólice</div>
           <a href="https://www.aig.com/Mastercard/pt" target="_blank" class="text-sm font-bold text-sky-400 underline block truncate">aig.com/Mastercard/pt</a>
-          <a href="https://www.mycardbenefits.com/" target="_blank" class="text-[10px] text-sky-400 underline block">Portal MyCardBenefits</a>
+          <a href="https://www.mycardbenefits.com/" target="_blank" class="text-xs text-sky-400 underline block">Portal MyCardBenefits</a>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">FLUXO OPERACIONAL DE ATENDIMENTO</div>
-          <ol class="list-decimal list-inside space-y-2 text-slate-300">
-            <li><strong>Contato Imediato:</strong> Ligue para o número internacional (+1-636-722-7111) antes da consulta ou durante a triagem hospitalar para direcionamento à rede credenciada (faturamento direto sem desembolso).</li>
-            <li><strong>Dados Requeridos na Ligação:</strong>
-              <ul class="list-disc list-inside ml-4 text-slate-400 text-[11px] mt-1 space-y-0.5">
-                <li>16 dígitos do Cartão Mastercard Black emissor (final 1754).</li>
-                <li>Número do Bilhete de Seguro emitido previamente.</li>
-                <li>Data de saída do Brasil (01/09/2026) e retorno (23/09/2026).</li>
-                <li>Endereço / Telefone da unidade médica na Islândia ou EUA.</li>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3">
+          <div class="text-sky-400 font-bold font-mono text-sm border-b border-darkborder/60 pb-1.5">FLUXO OPERACIONAL EM CASO DE SINISTRO</div>
+          <ol class="list-decimal list-inside space-y-2.5 text-slate-200">
+            <li><strong>Contato Prévio:</strong> Ligue para o número internacional (+1-636-722-7111) antes da triagem hospitalar para requerer encaminhamento à rede com faturamento direto.</li>
+            <li><strong>Dados Imediatos em Mãos:</strong>
+              <ul class="list-disc list-inside ml-5 text-slate-400 text-xs mt-1.5 space-y-1 font-mono">
+                <li>16 dígitos do cartão emissor: Mastercard Black final 1754.</li>
+                <li>Número do Bilhete de Seguro emitido antes do embarque.</li>
+                <li>Datas de trânsito: Saída BR (01/09) e Retorno BR (23/09).</li>
+                <li>Endereço e telefone da unidade hospitalar local.</li>
               </ul>
             </li>
-            <li><strong>Em Caso de Atendimento Particular (Reembolso):</strong> Realize o pagamento com o cartão de crédito e exija na alta médica todos os comprovantes discriminados.</li>
+            <li><strong>Atendimento Remoto/Particular (Reembolso):</strong> Pague com cartão de crédito e exija na alta médica todos os documentos fiscais e laudos discriminados.</li>
           </ol>
         </div>
 
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-amber-400 font-bold border-b border-darkborder/50 pb-1">DOCUMENTAÇÃO OBRIGATÓRIA PARA REEMBOLSO</div>
-          <ul class="list-disc list-inside space-y-1.5 text-slate-300">
-            <li><strong>Laudo Médico Completo (*Medical Report*):</strong> Em inglês, com histórico, diagnóstico, exames realizados e CID (*ICD-10*).</li>
-            <li><strong>Fatura Discriminada (*Itemized Bill*):</strong> Lista detalhada de cada procedimento, honorário, taxa hospitalar e insumo.</li>
-            <li><strong>Recibo de Quitação (*Official Receipt*):</strong> Comprovante fiscal carimbado e assinado atestando pagamento total.</li>
-            <li><strong>Prescrições Médicas:</strong> Todas as receitas de medicamentos adquiridos em farmácia.</li>
-            <li><strong>Comprovação de Elegibilidade:</strong> Fatura do cartão com o lançamento das passagens da <a href="https://www.united.com/" target="_blank" class="text-sky-400 underline">United Airlines</a> e cartões de embarque de todos os trechos.</li>
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3">
+          <div class="text-amber-400 font-bold font-mono text-sm border-b border-darkborder/60 pb-1.5">DOCUMENTAÇÃO PARA REEMBOLSO</div>
+          <ul class="list-disc list-inside space-y-2 text-slate-200">
+            <li><strong>Medical Report (Laudo Médico):</strong> Em inglês, com diagnóstico, conduta médica e código CID (ICD-10).</li>
+            <li><strong>Itemized Bill (Fatura Discriminada):</strong> Lista itemizada de cada exame, procedimento e medicação.</li>
+            <li><strong>Official Receipt (Quitação):</strong> Comprovante fiscal assinado/carimbado atestando quitação do saldo.</li>
+            <li><strong>Prescrições Médicas:</strong> Receitas originais para todos os medicamentos comprados em farmácia.</li>
+            <li><strong>Comprovação de Elegibilidade:</strong> Fatura do cartão com a emissão das passagens na United Airlines e cartões de embarque de todos os trechos.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- MÓDULO 2: MALHA DE VOOS (UNITED AIRLINES) -->
-    <section id="m2" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">02. Malha de Voos United Airlines (PNR: FNSQ4R)</h2>
+    <!-- MÓDULO 2: MALHA DE VOOS & RODOVIÁRIO -->
+    <section id="m2" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">02. Malha de Voos United Airlines (PNR: FNSQ4R)</h2>
         <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Confirmado</span>
       </div>
 
-      <div class="bg-darkcard p-3 rounded border border-darkborder flex flex-wrap justify-between items-center gap-2">
-        <div><span class="text-slate-400">Localizador (PNR):</span> <strong class="text-emerald-400 text-sm">FNSQ4R</strong></div>
-        <div><span class="text-slate-400">Sidnei Portela:</span> eTicket <strong class="text-slate-200">0166056181771</strong> (MileagePlus UA-XXXXX799)</div>
-        <div><span class="text-slate-400">Liana Brito:</span> eTicket <strong class="text-slate-200">0166056181769</strong></div>
-        <div><span class="text-slate-400">Franquia:</span> <strong class="text-sky-400">2x 23 kg / pessoa (Despachadas)</strong></div>
+      <div class="bg-darkcard p-4 rounded-lg border border-darkborder flex flex-wrap justify-between items-center gap-3 font-mono text-xs">
+        <div><span class="text-slate-400">Localizador (PNR):</span> <strong class="text-emerald-400 text-base">FNSQ4R</strong></div>
+        <div><span class="text-slate-400">Sidnei Portela:</span> eTicket <strong class="text-slate-100">0166056181771</strong></div>
+        <div><span class="text-slate-400">Liana Brito:</span> eTicket <strong class="text-slate-100">0166056181769</strong></div>
+        <div><span class="text-slate-400">Bagagem:</span> <strong class="text-sky-400">2x 23 kg / pessoa (Despachadas)</strong></div>
       </div>
 
       <div class="overflow-x-auto">
-        <table class="w-full text-left border border-darkborder text-[11px]">
+        <table class="w-full text-left border border-darkborder text-xs font-mono">
           <thead class="bg-slate-800/80 text-slate-300">
             <tr>
-              <th class="p-2.5 border-b border-darkborder">Voo / Cia</th>
-              <th class="p-2.5 border-b border-darkborder">Trecho</th>
-              <th class="p-2.5 border-b border-darkborder">Data / Horários (Locais)</th>
-              <th class="p-2.5 border-b border-darkborder">Duração</th>
-              <th class="p-2.5 border-b border-darkborder">Assentos</th>
-              <th class="p-2.5 border-b border-darkborder">Terminais & Logística</th>
+              <th class="p-3 border-b border-darkborder">Voo / Cia</th>
+              <th class="p-3 border-b border-darkborder">Trecho</th>
+              <th class="p-3 border-b border-darkborder">Data / Horários</th>
+              <th class="p-3 border-b border-darkborder">Duração</th>
+              <th class="p-3 border-b border-darkborder">Assentos</th>
+              <th class="p-3 border-b border-darkborder">Terminais & Logística</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-darkborder">
             <tr>
-              <td class="p-2.5 font-bold text-sky-400">UA 860<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
-              <td class="p-2.5 font-semibold">GRU &rarr; IAD</td>
-              <td class="p-2.5"><strong>01/09/2026</strong> 21:30 &rarr; <strong>02/09</strong> 06:25</td>
-              <td class="p-2.5">09h55</td>
-              <td class="p-2.5 text-emerald-400">37B (Sidnei)<br>37A (Liana)</td>
-              <td class="p-2.5 text-slate-300">GRU: Terminal 3. Check-in/despacho abre 17:30. Acesso Lounge Mastercard Black T3.</td>
+              <td class="p-3 font-bold text-sky-400">UA 860<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
+              <td class="p-3 font-semibold">GRU &rarr; IAD</td>
+              <td class="p-3"><strong>01/09/2026</strong> 21:30 &rarr; <strong>02/09</strong> 06:25</td>
+              <td class="p-3">09h55</td>
+              <td class="p-3 text-emerald-400">37B (Sidnei)<br>37A (Liana)</td>
+              <td class="p-3 text-slate-300">GRU: Terminal 3 (Check-in G/H abre 17:30). Lounge Mastercard T3.</td>
             </tr>
             <tr>
-              <td class="p-2.5 font-bold text-sky-400">UA 1775<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
-              <td class="p-2.5 font-semibold">IAD &rarr; ORD</td>
-              <td class="p-2.5"><strong>02/09/2026</strong> 08:35 &rarr; <strong>02/09</strong> 09:39</td>
-              <td class="p-2.5">02h04</td>
-              <td class="p-2.5 text-emerald-400">29B (Sidnei)<br>29A (Liana)</td>
-              <td class="p-2.5 text-slate-300">Conexão IAD (02h10): Imigração CBP &rarr; Retirar malas &rarr; Redespacho &rarr; TSA &rarr; Concourse C/D. ORD: Desembarque T1.</td>
+              <td class="p-3 font-bold text-sky-400">UA 1775<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
+              <td class="p-3 font-semibold">IAD &rarr; ORD</td>
+              <td class="p-3"><strong>02/09/2026</strong> 08:35 &rarr; <strong>02/09</strong> 09:39</td>
+              <td class="p-3">02h04</td>
+              <td class="p-3 text-emerald-400">29B (Sidnei)<br>29A (Liana)</td>
+              <td class="p-3 text-slate-300">Conexão IAD (02h10): Imigração &rarr; Malas &rarr; Redespacho &rarr; TSA &rarr; Concourse C/D. ORD: Desembarque T1.</td>
             </tr>
             <tr>
-              <td class="p-2.5 font-bold text-sky-400">UA 912<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
-              <td class="p-2.5 font-semibold">ORD &rarr; KEF</td>
-              <td class="p-2.5"><strong>07/09/2026</strong> 21:15 &rarr; <strong>08/09</strong> 08:30</td>
-              <td class="p-2.5">06h15</td>
-              <td class="p-2.5 text-emerald-400">34B (Sidnei)<br>34A (Liana)</td>
-              <td class="p-2.5 text-slate-300">ORD: Terminal 5. Apresentação às 18:15 (T-3h). Voo noturno internacional. Entrada Espaço Schengen em KEF.</td>
+              <td class="p-3 font-bold text-sky-400">UA 912<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
+              <td class="p-3 font-semibold">ORD &rarr; KEF</td>
+              <td class="p-3"><strong>07/09/2026</strong> 21:15 &rarr; <strong>08/09</strong> 08:30</td>
+              <td class="p-3">06h15</td>
+              <td class="p-3 text-emerald-400">34B (Sidnei)<br>34A (Liana)</td>
+              <td class="p-3 text-slate-300">ORD: Terminal 5. Apresentação às 18:15 (T-3h). Voo noturno internacional para Islândia.</td>
             </tr>
             <tr>
-              <td class="p-2.5 font-bold text-sky-400">UA 399<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
-              <td class="p-2.5 font-semibold">KEF &rarr; IAD</td>
-              <td class="p-2.5"><strong>22/09/2026</strong> 11:30 &rarr; <strong>22/09</strong> 13:55</td>
-              <td class="p-2.5">06h25</td>
-              <td class="p-2.5 text-emerald-400">35B (Sidnei)<br>35A (Liana)</td>
-              <td class="p-2.5 text-slate-300">KEF: Terminal Leif Erikson. Devolução do 4x4 na Lotus às 08:30 GMT.</td>
+              <td class="p-3 font-bold text-sky-400">UA 399<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
+              <td class="p-3 font-semibold">KEF &rarr; IAD</td>
+              <td class="p-3"><strong>22/09/2026</strong> 11:30 &rarr; <strong>22/09</strong> 13:55</td>
+              <td class="p-3">06h25</td>
+              <td class="p-3 text-emerald-400">35B (Sidnei)<br>35A (Liana)</td>
+              <td class="p-3 text-slate-300">KEF: Terminal Leif Erikson. Devolução do 4x4 na Lotus às 08:30 GMT.</td>
             </tr>
             <tr>
-              <td class="p-2.5 font-bold text-sky-400">UA 861<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
-              <td class="p-2.5 font-semibold">IAD &rarr; GRU</td>
-              <td class="p-2.5"><strong>22/09/2026</strong> 22:35 &rarr; <strong>23/09</strong> 09:30</td>
-              <td class="p-2.5">09h55</td>
-              <td class="p-2.5 text-emerald-400">48K (Sidnei)<br>48L (Liana)</td>
-              <td class="p-2.5 text-slate-300">Conexão IAD longa (08h40): Imigração/TSA &rarr; Lounges Concourse C/D ou Smithsonian Udvar-Hazy Center. GRU: Desembarque T3.</td>
+              <td class="p-3 font-bold text-sky-400">UA 861<br><span class="text-slate-500 font-normal">Economy (K)</span></td>
+              <td class="p-3 font-semibold">IAD &rarr; GRU</td>
+              <td class="p-3"><strong>22/09/2026</strong> 22:35 &rarr; <strong>23/09</strong> 09:30</td>
+              <td class="p-3">09h55</td>
+              <td class="p-3 text-emerald-400">48K (Sidnei)<br>48L (Liana)</td>
+              <td class="p-3 text-slate-300">Conexão IAD (08h40): Imigração &rarr; Redespacho &rarr; Lounge Concourse C/D. GRU: Desembarque T3.</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- MÓDULO 3: TRECHOS RODOVIÁRIOS -->
-    <section id="m3" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">03. Trechos Rodoviários (BHZ &harr; SP)</h2>
-        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Confirmado</span>
+    <!-- MÓDULO 3: ROTEIRO IAD & COMPRA TRANSPORTE ORD -->
+    <section id="m3" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">03. Roteiro de Conexão em Washington (IAD) & Transporte em ORD</h2>
+        <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Operacional</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">IDA: BHZ &rarr; GUARULHOS (31/08/2026)</div>
-          <div class="space-y-1 text-slate-300">
-            <div><strong>Operador:</strong> <a href="https://viajeguanabara.com.br/" target="_blank" class="text-sky-400 underline">Expresso União / Guanabara</a> (Classe Leito)</div>
-            <div><strong>Partida:</strong> 31/08/2026 às <strong>19:45</strong> (Apresentação: 19:15) | Tergip BH (Plat. D1/D2)</div>
-            <div><strong>Chegada Prevista:</strong> 01/09/2026 às ~06:00 | Terminal Rodoviário de Guarulhos</div>
-            <div><strong>Passageiro 1:</strong> SIDNEI AREIAS PORTELA | <strong>Poltrona 61</strong> | BP-e: 3453562</div>
-            <div><strong>Passageiro 2:</strong> LIANA RODRIGUES DE BRITO | <strong>Poltrona 62</strong> | BP-e: 3453561</div>
-            <div><strong>Localizador / Reserva:</strong> <strong class="text-emerald-400 text-sm">1MH8UP</strong></div>
-            <div class="text-[10px] text-slate-400 pt-1 border-t border-darkborder/50 mt-2">
-              • Intervalo até UA 860 (21:30): Traslado ao T3, guarda-volumes ou day-use em Cumbica. Lounge Mastercard T3 acessível a partir das 17:30.
-            </div>
+      <!-- GUIA DE CONEXÃO IAD -->
+      <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3 font-mono">
+        <div class="text-sky-400 font-bold text-sm border-b border-darkborder/60 pb-1.5">PASSO A PASSO DA CONEXÃO EM WASHINGTON DULLES (JANELA: 02H10MIN)</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="space-y-2 text-slate-200">
+            <div><strong class="text-amber-400">1. Desembarque (06:25 - 06:45):</strong> Saia do UA 860 no Concourse C/D e siga as placas de <em>"Connecting Flights"</em> até a área de imigração internacional.</div>
+            <div><strong class="text-amber-400">2. Imigração CBP (06:45 - 07:10):</strong> Apresente passaportes com vistos B1/B2 válidos aos agentes do CBP.</div>
+            <div><strong class="text-amber-400">3. Retirada de Malas (07:10 - 07:25):</strong> Pegue as 4 malas no carrossel de conexão internacional.</div>
+          </div>
+          <div class="space-y-2 text-slate-200">
+            <div><strong class="text-amber-400">4. Redespacho Imediato (07:25 - 07:35):</strong> Entregue as malas na esteira de <em>"United Bag Drop / Connecting Flights"</em> logo após a alfândega.</div>
+            <div><strong class="text-amber-400">5. Triagem TSA (07:35 - 07:50):</strong> Passe pelo raio-X da TSA. Baterias LiPo no carry-on.</div>
+            <div><strong class="text-amber-400">6. Portão UA 1775 (07:50 - 08:05):</strong> Verifique o portão exato no painel e dirija-se ao Concourse C/D (embarque encerra às 08:20 EDT).</div>
           </div>
         </div>
+      </div>
 
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">RETORNO: GRU T3 &rarr; TIETÊ &rarr; BHZ (23/09/2026)</div>
-          <div class="space-y-1 text-slate-300">
-            <div><strong>Desembarque GRU T3:</strong> 09:30 | Restituição e alfândega RFB previstas até 10:45.</div>
-            <div><strong>Translado T3 &rarr; Tietê:</strong> Uber XL / 99 (35 a 60 min) ou EMTU 472EX1 (R$ 43,45/pax).</div>
-            <div class="border-t border-darkborder/50 pt-2 mt-2">
-              <strong class="text-amber-400">Gatilhos de Saída no Terminal Tietê:</strong>
-              <ul class="list-disc list-inside text-slate-300 mt-1 space-y-1">
-                <li><span class="text-emerald-400 font-bold">Gatilho A (13:00):</span> <a href="https://www.viacaocometa.com.br/" target="_blank" class="text-sky-400 underline">Viação Cometa</a> (Leito) se liberação no T3 ocorrer até as 11:15. Chegada em BH às 22:30.</li>
-                <li><span class="text-amber-400 font-bold">Gatilho B (15:00):</span> <a href="https://www.gontijo.com.br/" target="_blank" class="text-sky-400 underline">Viação Gontijo</a> (Executivo) se liberação no T3 ocorrer após 11:30. Chegada em BH às 00:05 (+1).</li>
-              </ul>
-            </div>
+      <!-- COMPRA DE PASSES EM CHICAGO ORD -->
+      <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3">
+        <div class="text-sky-400 font-bold font-mono text-sm border-b border-darkborder/60 pb-1.5">OPÇÕES DE AQUISIÇÃO DO PASSE CTA NO AEROPORTO DE CHICAGO (ORD)</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <div class="p-4 bg-slate-900 rounded border border-darkborder space-y-2">
+            <div class="font-bold text-sky-300">OPÇÃO 1: App Ventra (Digital)</div>
+            <p class="text-slate-300">Compre o <strong>CTA 7-Day Pass (US$ 20,00)</strong> no app <a href="https://www.ventrachicago.com/" target="_blank" class="text-sky-400 underline">Ventra Chicago</a> e adicione ao Apple/Google Wallet. Isento de taxa do cartão plástico.</p>
+          </div>
+          <div class="p-4 bg-slate-900 rounded border border-darkborder space-y-2">
+            <div class="font-bold text-emerald-400">OPÇÃO 2: Máquina na Estação (Físico)</div>
+            <p class="text-slate-300">Compre o cartão físico nas máquinas TVM da estação CTA Blue Line (Nível inferior do Terminal 2). Custo: <strong>US$ 20,00</strong> + US$ 5,00 do cartão plástico.</p>
+          </div>
+          <div class="p-4 bg-slate-900 rounded border border-darkborder space-y-2">
+            <div class="font-bold text-amber-400">OPÇÃO 3: Pagamento por Aproximação</div>
+            <p class="text-slate-300">Toque o cartão Wise ou de crédito na catraca. Tarifa avulsa de <strong>US$ 5,00</strong> na saída de O'Hare e US$ 2,25-2,50 nos ônibus/metrôs urbanos.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MÓDULO 4: BASE CHICAGO & JAZZ FESTIVAL -->
-    <section id="m4" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">04. Base Operacional Chicago & Chicago Jazz Festival</h2>
+    <!-- MÓDULO 4: BASE CHICAGO & LINHAS CTA -->
+    <section id="m4" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">04. Base Operacional Chicago & Linhas de Transporte</h2>
         <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Parametrizado</span>
       </div>
 
-      <div class="p-3 bg-darkcard rounded border border-darkborder space-y-1">
-        <div class="text-sky-400 font-bold">ACOMODAÇÃO AIRBNB: 4151 South Berkeley Avenue, Chicago, IL 60653 (Kenwood/Bronzeville)</div>
-        <div class="text-slate-300">Check-in oficial: <strong>02/09 às 15:00 CDT</strong> | Check-out: <strong>07/09 às 16:45 CDT</strong></div>
-        <div class="text-slate-400 text-[11px]">Conectividade: Ponto do <strong>CTA Bus #6 Express</strong> a 350m (S Lake Park & 42nd Pl) &rarr; 18 min diretos ao Millennium Park. Estação 57th St Metra a 3,8 km.</div>
+      <div class="p-4 bg-darkcard rounded-lg border border-darkborder space-y-1 font-mono text-xs">
+        <div class="text-sky-400 font-bold text-sm">ACOMODAÇÃO AIRBNB: 4151 South Berkeley Avenue, Chicago, IL 60653 (Kenwood / Bronzeville)</div>
+        <div class="text-slate-300">Check-in Oficial: <strong>02/09 às 15:00 CDT</strong> | Check-out: <strong>07/09 às 16:45 CDT</strong></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">CHEGADA & GESTÃO DE BAGAGEM (02/09)</div>
-          <ul class="list-disc list-inside space-y-1.5 text-slate-300">
-            <li><strong>09:39:</strong> Pouso UA 1775 (ORD T1) &rarr; Restituição de 4 malas de 23 kg.</li>
-            <li><strong>10:30 &rarr; 11:30:</strong> Uber XL direto para 4151 S Berkeley Ave.</li>
-            <li><strong>11:30 &rarr; 12:00:</strong> <em>Bag Drop</em> prévio autorizado no Airbnb (deixar malas no hall). Se não autorizado: guarda-volumes no Loop (<a href="https://usebounce.com/" target="_blank" class="text-sky-400 underline">Bounce</a> / <a href="https://luggagehero.com/" target="_blank" class="text-sky-400 underline">LuggageHero</a>).</li>
-            <li><strong>12:15 &rarr; 14:15:</strong> Almoço em Hyde Park (<a href="https://www.ascionebistro.com/" target="_blank" class="text-sky-400 underline">Ascione Bistro</a> ou <a href="https://www.peachsrestaurant.com/" target="_blank" class="text-sky-400 underline">Peach's</a>).</li>
-            <li><strong>15:00:</strong> Entrada oficial no Airbnb via keypad.</li>
-          </ul>
-        </div>
+      <!-- ESTAÇÕES DE METRÔ / TREM -->
+      <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3">
+        <div class="text-sky-400 font-bold font-mono text-sm border-b border-darkborder/60 pb-1.5">ESTAÇÕES DE METRÔ & TREM PRÓXIMAS (LINHAS DESTACADAS)</div>
+        <div class="space-y-3 text-xs font-mono">
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-emerald-400 font-bold text-sm">1. 43rd Street Station (CTA Green Line)</div>
+            <div class="text-slate-300"><strong>Endereço:</strong> 314 E 43rd St, Chicago, IL 60653</div>
+            <div class="text-slate-300"><strong>Nome da Linha:</strong> <a href="https://www.transitchicago.com/greenline/" target="_blank" class="text-sky-400 underline">CTA Green Line</a> (Sentido Harlem/Lake &harr; Ashland/63rd)</div>
+            <div class="text-slate-400"><strong>Distância até o Airbnb:</strong> 1,3 km (16 min a pé ou 4 min via Uber / Ônibus #43)</div>
+            <div class="text-slate-400"><strong>Conexão:</strong> Direto ao Loop Elevated (Adams/Wabash em 14 min).</div>
+          </div>
 
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1"><a href="https://www.chicago.gov/city/en/depts/dcase/supp_info/chicago_jazz_festival.html" target="_blank" class="text-sky-400 underline">CHICAGO JAZZ FESTIVAL 2026</a> (Entrada Franca)</div>
-          <ul class="list-disc list-inside space-y-1 text-slate-300">
-            <li><strong>03/09 (Qui):</strong> <a href="https://www.chicago.gov/city/en/depts/dcase/supp_info/chicago_cultural_center.html" target="_blank" class="text-sky-400 underline">Cultural Center</a> (12:00-16:30) + Millennium Park (16:30-20:30).</li>
-            <li><strong>04/09 (Sex):</strong> Palcos Diurnos (11:30-15:00) + Jay Pritzker Pavilion (16:15-21:00).</li>
-            <li><strong>05/09 (Sáb):</strong> Harris Rooftop (14:30) + Jay Pritzker Pavilion (16:15-21:15). Headliner às 20:10.</li>
-            <li><strong>06/09 (Dom):</strong> Encerramento no Pritzker Pavilion (16:15-21:15).</li>
-            <li><strong>Regras:</strong> Entrada livre por ordem de chegada no Pritzker; gramado (*Great Lawn*) com acústica de alta fidelidade; proibição total de voo de drone na cidade.</li>
-          </ul>
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-emerald-400 font-bold text-sm">2. 57th St / Hyde Park Station (Metra Electric & South Shore Line)</div>
+            <div class="text-slate-300"><strong>Endereço:</strong> 1515 E 57th St, Chicago, IL 60637</div>
+            <div class="text-slate-300"><strong>Nome da Linha:</strong> <a href="https://mysouthshoreline.com/" target="_blank" class="text-sky-400 underline">NICTD South Shore Line</a> + Metra Electric District</div>
+            <div class="text-slate-400"><strong>Distância até o Airbnb:</strong> 3,8 km (7 min de Uber ou 15 min via Ônibus #6)</div>
+            <div class="text-slate-400"><strong>Conexão:</strong> Estação de embarque para o Locker em Hammond Gateway, Indiana (24 min) e Millennium Station.</div>
+          </div>
+
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-emerald-400 font-bold text-sm">3. Indiana Station (CTA Green Line)</div>
+            <div class="text-slate-300"><strong>Endereço:</strong> 4003 S Indiana Ave, Chicago, IL 60653</div>
+            <div class="text-slate-300"><strong>Nome da Linha:</strong> CTA Green Line</div>
+            <div class="text-slate-400"><strong>Distância até o Airbnb:</strong> 1,5 km (18 min a pé)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINHAS DE ÔNIBUS CTA -->
+      <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3">
+        <div class="text-sky-400 font-bold font-mono text-sm border-b border-darkborder/60 pb-1.5">LINHAS DE ÔNIBUS CTA (PONTOS DESTACADOS)</div>
+        <div class="space-y-3 text-xs font-mono">
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-sky-300 font-bold text-sm">1. CTA Bus #6 (Jackson Park Express) &mdash; PRINCIPAL LINHA DIRETA AO LOOP</div>
+            <div class="text-slate-300"><strong>Ponto de Parada:</strong> S Lake Park Ave & 42nd Place (Sentido Northbound) / E 41st St & S Lake Park Ave</div>
+            <div class="text-slate-300"><strong>Nome da Linha:</strong> <a href="https://www.transitchicago.com/bus/6/" target="_blank" class="text-sky-400 underline">#6 Jackson Park Express</a></div>
+            <div class="text-slate-400"><strong>Distância até o Airbnb:</strong> 350 metros (4 minutos a pé)</div>
+            <div class="text-slate-400"><strong>Trajeto:</strong> Expresso via DuSable Lake Shore Drive direto ao Millennium Park / Jazz Festival (18 a 22 min).</div>
+          </div>
+
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-sky-300 font-bold text-sm">2. CTA Bus #43 (43rd Street) &mdash; CONEXÃO COM METRÔ</div>
+            <div class="text-slate-300"><strong>Ponto de Parada:</strong> E 43rd St & S Berkeley Ave</div>
+            <div class="text-slate-300"><strong>Nome da Linha:</strong> <a href="https://www.transitchicago.com/bus/43/" target="_blank" class="text-sky-400 underline">#43 43rd</a></div>
+            <div class="text-slate-400"><strong>Distância até o Airbnb:</strong> 150 metros (2 minutos a pé)</div>
+            <div class="text-slate-400"><strong>Trajeto:</strong> Conexão transversal de 5 min até a estação 43rd da CTA Green Line.</div>
+          </div>
+
+          <div class="p-3 bg-slate-900 rounded border border-darkborder">
+            <div class="text-sky-300 font-bold text-sm">3. CTA Bus #3 (King Drive)</div>
+            <div class="text-slate-300"><strong>Ponto de Parada:</strong> E 43rd St & S King Dr</div>
+            <div class="text-slate-300"><strong>Nome da Linha:</strong> <a href="https://www.transitchicago.com/bus/3/" target="_blank" class="text-sky-400 underline">#3 King Drive</a></div>
+            <div class="text-slate-400"><strong>Distância até o Airbnb:</strong> 600 metros (7 minutos a pé)</div>
+            <div class="text-slate-400"><strong>Trajeto:</strong> Acesso parador até o centro de Chicago e Chicago Cultural Center (25 a 30 min).</div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- MÓDULO 5: LOCAÇÃO 4X4 ISLÂNDIA (LOTUS) -->
-    <section id="m5" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">05. Locação Veicular 4x4: Lotus Car Rental (Reserva: QNS5BF)</h2>
+    <section id="m5" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">05. Locação Veicular 4x4: Lotus Car Rental (Reserva: QNS5BF)</h2>
         <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Confirmado</span>
       </div>
 
-      <div class="bg-darkcard p-3 rounded border border-darkborder flex flex-wrap justify-between items-center gap-2">
+      <div class="bg-darkcard p-4 rounded-lg border border-darkborder flex flex-wrap justify-between items-center gap-3 font-mono text-xs">
         <div><span class="text-slate-400">Locadora:</span> <a href="https://www.lotuscarrental.is/" target="_blank" class="text-sky-400 underline font-bold">Lotus Car Rental Iceland</a></div>
         <div><span class="text-slate-400">Reserva:</span> <strong class="text-emerald-400 text-sm">QNS5BF</strong> (Sidnei Portela)</div>
-        <div><span class="text-slate-400">Retirada:</span> <strong>08/09/2026</strong> (Após pouso UA 912 às 08:30 GMT)</div>
+        <div><span class="text-slate-400">Retirada:</span> <strong>08/09/2026</strong> (Pós-pouso UA 912 às 08:30 GMT)</div>
         <div><span class="text-slate-400">Devolução:</span> <strong>22/09/2026 às 08:30 GMT</strong> (Base KEF)</div>
-        <div><span class="text-slate-400">Telefone Apoio:</span> <strong>+354 787 4444</strong></div>
+        <div><span class="text-slate-400">Apoio Telefônico:</span> <strong>+354 787 4444</strong></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">SHUTTLE AEROPORTO KEF & RETIRADA</div>
-          <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 font-mono text-xs">
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-2.5">
+          <div class="text-sky-400 font-bold border-b border-darkborder/60 pb-1.5">SHUTTLE KEF & RETIRADA</div>
+          <ol class="list-decimal list-inside space-y-2 text-slate-200">
             <li>Desembarque em KEF &rarr; Restituição de bagagens e alfândega.</li>
-            <li>Siga as placas no Saguão de Chegadas até a parada do <em>"Car Rental Shuttle"</em>.</li>
-            <li>Embarque no Shuttle da Lotus (frequência a cada 15 min entre 05:00 e 18:00; trajeto de 5 min até Kjóavöllum 2, Keflavík).</li>
-            <li>Apresente CNH brasileira original + PID + Cartão de Crédito.</li>
-            <li>Faça gravação em vídeo 4K de toda a lataria, vidros e rodas antes de sair.</li>
+            <li>Siga as placas no Arrivals Hall até o <em>"Car Rental Shuttle"</em>.</li>
+            <li>Embarque no Shuttle da Lotus (a cada 15 min entre 05:00 e 18:00; trajeto de 5 min até Kjóavöllum 2, Keflavík).</li>
+            <li>Apresente CNH física + PID + Cartão de Crédito.</li>
+            <li>Faça gravação em vídeo 4K de toda a lataria, vidros e rodas antes de deixar o pátio.</li>
           </ol>
         </div>
 
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">AUDITORIA DE COBERTURAS (PLATINUM INSURANCE)</div>
-          <ul class="list-disc list-inside space-y-1 text-slate-300">
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-2.5">
+          <div class="text-sky-400 font-bold border-b border-darkborder/60 pb-1.5">AUDITORIA DE COBERTURAS (PLATINUM INSURANCE)</div>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-200">
             <li><span class="text-emerald-400 font-bold">CDW / SCDW / TP:</span> Inclusos (Franquia ISK 0).</li>
             <li><span class="text-emerald-400 font-bold">Gravel Protection (GP):</span> Incluso (100% para-brisa, faróis e pintura).</li>
             <li><span class="text-emerald-400 font-bold">Sand & Ash (SADW):</span> Incluso (cinzas vulcânicas e areia).</li>
-            <li><span class="text-emerald-400 font-bold">Wind Door & Tires:</span> Danos por vento na porta e pneus furados inclusos.</li>
-            <li><span class="text-rose-400 font-bold">Exclusões Críticas:</span> Travessia de rios (*River Crossing*) e amassamento inferior do chassi por rochas não possuem cobertura.</li>
+            <li><span class="text-emerald-400 font-bold">Wind Door & Tires:</span> Danos por vento na porta e furos em pneus inclusos.</li>
+            <li><span class="text-rose-400 font-bold">Exclusões Críticas:</span> Travessia de rios (<em>River Crossing</em>) e amassamento inferior do chassi por rochas não possuem cobertura.</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- MÓDULO 6: PROTOCOLO DRONE (DJI AIR 3S) -->
-    <section id="m6" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">06. Drone DJI Air 3S: Protocolos Técnicos & No-Fly Zones</h2>
+    <section id="m6" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">06. Protocolo Operacional DJI Air 3S</h2>
         <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Protocolo Ativo</span>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-        <a href="https://www.uavforecast.com/" target="_blank" class="p-2.5 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center font-mono text-xs">
+        <a href="https://www.uavforecast.com/" target="_blank" class="p-3 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">UAV Forecast</div>
-          <div class="text-[10px] text-slate-400">Vento em altitude & KP</div>
+          <div class="text-slate-400 text-[11px] mt-1">Vento em altitude & KP</div>
         </a>
-        <a href="https://faadronezone-access.faa.gov/" target="_blank" class="p-2.5 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+        <a href="https://faadronezone-access.faa.gov/" target="_blank" class="p-3 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">FAA DroneZone</div>
-          <div class="text-[10px] text-slate-400">Registro EUA (US$ 5)</div>
+          <div class="text-slate-400 text-[11px] mt-1">Registro EUA (US$ 5)</div>
         </a>
-        <a href="https://www.icetra.is/" target="_blank" class="p-2.5 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+        <a href="https://www.icetra.is/" target="_blank" class="p-3 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">Icetra EASA</div>
-          <div class="text-[10px] text-slate-400">Operador Islândia</div>
+          <div class="text-slate-400 text-[11px] mt-1">Operador Islândia</div>
         </a>
-        <a href="https://safetravel.is/" target="_blank" class="p-2.5 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+        <a href="https://safetravel.is/" target="_blank" class="p-3 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">SafeTravel.is</div>
-          <div class="text-[10px] text-slate-400">Alertas de Vento e Clima</div>
+          <div class="text-slate-400 text-[11px] mt-1">Alertas Climáticos</div>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">CHECKLIST OPERACIONAL DE CAMPO</div>
-          <ul class="list-disc list-inside space-y-1 text-slate-300">
-            <li><strong>Transporte IATA:</strong> 3x baterias BWX233-4241 (62,5 Wh) 100% no carry-on a ~30% de carga. Despacho estritamente proibido.</li>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 font-mono text-xs">
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-2.5">
+          <div class="text-sky-400 font-bold border-b border-darkborder/60 pb-1.5">CHECKLIST OPERACIONAL DE CAMPO</div>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-200">
+            <li><strong>Transporte IATA:</strong> 3x baterias BWX233-4241 (62,5 Wh) 100% no carry-on a ~30% de carga. Despacho proibido.</li>
             <li><strong>Teto Operacional de Vento:</strong> <strong>12 m/s (43,2 km/h)</strong>. Não decolar acima desse valor.</li>
-            <li><strong>Interferência Basáltica:</strong> Não calibrar a bússola sobre rochas vulcânicas recentes ou perto da lataria do 4x4.</li>
+            <li><strong>Interferência Basáltica:</strong> Não calibrar a bússola sobre rochas vulcânicas ou perto do veículo 4x4.</li>
             <li><strong>Setup DJI Fly:</strong> RTH fixado a 120m (Preset vertical); Bypass/APAS Normal; Vídeo 4K 24/30fps Nitidez -2; RAW+JPEG.</li>
             <li><strong>Temperatura:</strong> Em clima &lt; 5°C, pré-aquecer baterias nos bolsos internos da jaqueta.</li>
           </ul>
         </div>
 
-        <div class="p-4 bg-darkcard rounded border border-rose-900/50 space-y-2">
-          <div class="text-rose-400 font-bold border-b border-rose-900/50 pb-1">ZONAS DE EXCLUSÃO ABSOLUTA (ISLÂNDIA)</div>
-          <ul class="list-disc list-inside space-y-1 text-slate-300">
+        <div class="p-5 bg-darkcard rounded-lg border border-rose-900/50 space-y-2.5">
+          <div class="text-rose-400 font-bold border-b border-rose-900/50 pb-1.5">ZONAS DE EXCLUSÃO ABSOLUTA (ISLÂNDIA)</div>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-200">
             <li>Parque Nacional Vatnajökull (Skaftafell, Falljökull).</li>
             <li>Lagoa Glacial Jökulsárlón e Diamond Beach.</li>
             <li>Parques Nacionais Thingvellir e Snæfellsjökull.</li>
             <li>Cachoeiras turísticas: Skógafoss, Seljalandsfoss, Gullfoss, Dettifoss, Goðafoss.</li>
-            <li>Distâncias mínimas legais: 2 km de aeródromos e 50m de fauna/ninhos/pessoas.</li>
+            <li>Distâncias legais mínimas: 2 km de aeródromos e 50m de fauna/aglomerações.</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- MÓDULO 7: COMPRAS & ALFÂNDEGA -->
-    <section id="m7" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">07. Aquisições US & Engenharia Fiscal (e-DBV)</h2>
+    <section id="m7" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">07. Aquisições US & Engenharia Fiscal (e-DBV)</h2>
         <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Programado</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div class="p-3 bg-darkcard rounded border border-darkborder">
-          <div class="text-slate-400 text-[10px]">Disparo das Compras</div>
-          <div class="text-sm font-bold text-sky-400">27/08/2026 às 10:00 BRT</div>
-          <div class="text-[10px] text-slate-500 mt-1">Amazon US (Pré-Labor Day)</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
+        <div class="p-4 bg-darkcard rounded-lg border border-darkborder space-y-1">
+          <div class="text-slate-400 text-xs">Disparo das Compras</div>
+          <div class="text-base font-bold text-sky-400">27/08/2026 às 10:00 BRT</div>
+          <div class="text-[11px] text-slate-500 mt-1">Amazon US (Pré-Labor Day)</div>
         </div>
-        <div class="p-3 bg-darkcard rounded border border-darkborder">
-          <div class="text-slate-400 text-[10px]">Locker de Destino</div>
-          <div class="text-sm font-bold text-emerald-400">Hammond / Munster (IN)</div>
-          <div class="text-[10px] text-slate-500 mt-1">Sales Tax 7,00% (Economia vs Cook 10,25%)</div>
+        <div class="p-4 bg-darkcard rounded-lg border border-darkborder space-y-1">
+          <div class="text-slate-400 text-xs">Locker de Destino</div>
+          <div class="text-base font-bold text-emerald-400">Hammond / Munster (IN)</div>
+          <div class="text-[11px] text-slate-500 mt-1">Sales Tax 7,00% (Economia vs Cook 10,25%)</div>
         </div>
-        <div class="p-3 bg-darkcard rounded border border-darkborder">
-          <div class="text-slate-400 text-[10px]">Retirada Programada</div>
-          <div class="text-sm font-bold text-amber-400">03/09/2026 (Manhã)</div>
-          <div class="text-[10px] text-slate-500 mt-1">Acesso via trem <a href="https://mysouthshoreline.com/" target="_blank" class="text-sky-400 underline">South Shore Line</a> (57th St &rarr; Hammond)</div>
+        <div class="p-4 bg-darkcard rounded-lg border border-darkborder space-y-1">
+          <div class="text-slate-400 text-xs">Retirada Programada</div>
+          <div class="text-base font-bold text-amber-400">03/09/2026 (Manhã)</div>
+          <div class="text-[11px] text-slate-500 mt-1">Acesso via trem South Shore Line</div>
         </div>
       </div>
 
-      <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-        <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">ALOCAÇÃO DE BENS NA ALFÂNDEGA (RECEITA FEDERAL DO BRASIL)</div>
-        <table class="w-full text-left border border-darkborder text-[11px]">
+      <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-3 font-mono text-xs">
+        <div class="text-sky-400 font-bold border-b border-darkborder/60 pb-1.5">ALOCAÇÃO DE BENS NA ALFÂNDEGA (RECEITA FEDERAL DO BRASIL)</div>
+        <table class="w-full text-left border border-darkborder">
           <thead class="bg-slate-800/60 text-slate-300">
             <tr>
-              <th class="p-2 border-b border-darkborder">Passageiro / Cota</th>
-              <th class="p-2 border-b border-darkborder">Itens Declarados</th>
-              <th class="p-2 border-b border-darkborder">Valor Declarado</th>
-              <th class="p-2 border-b border-darkborder">Tributação Aplicável</th>
+              <th class="p-2.5 border-b border-darkborder">Passageiro / Cota</th>
+              <th class="p-2.5 border-b border-darkborder">Itens Declarados</th>
+              <th class="p-2.5 border-b border-darkborder">Valor Declarado</th>
+              <th class="p-2.5 border-b border-darkborder">Tributação Aplicável</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-darkborder">
             <tr>
-              <td class="p-2 font-bold text-sky-400">Titular (Cota US$ 1.000)</td>
-              <td class="p-2">DJI Air 3S Fly More Combo (com rádio RC 2)</td>
-              <td class="p-2">~US$ 1.579,00</td>
-              <td class="p-2 text-amber-400 font-bold">50% sobre excedente de US$ 579 (~US$ 289,50)</td>
+              <td class="p-2.5 font-bold text-sky-400">Titular (Cota US$ 1.000)</td>
+              <td class="p-2.5">DJI Air 3S Fly More Combo (com rádio RC 2)</td>
+              <td class="p-2.5">~US$ 1.579,00</td>
+              <td class="p-2.5 text-amber-400 font-bold">50% sobre excedente de US$ 579 (~US$ 289,50)</td>
             </tr>
             <tr>
-              <td class="p-2 font-bold text-sky-400">Acompanhante (Cota US$ 1.000)</td>
-              <td class="p-2">Filtros Freewell, Case FPVtosky, Carregador Anker 167.5W, GaN 140W, MicroSD 256GB</td>
-              <td class="p-2">~US$ 204,00</td>
-              <td class="p-2 text-emerald-400 font-bold">Isento (Dentro do limite individual de US$ 1.000)</td>
+              <td class="p-2.5 font-bold text-sky-400">Acompanhante (Cota US$ 1.000)</td>
+              <td class="p-2.5">Filtros Freewell, Case FPVtosky, Carregador Anker 167.5W, GaN 140W, MicroSD 256GB</td>
+              <td class="p-2.5">~US$ 204,00</td>
+              <td class="p-2.5 text-emerald-400 font-bold">Isento (Dentro do limite de US$ 1.000)</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- MÓDULO 8: APPS, PORTAIS & EFEMÉRIDES -->
-    <section id="m8" class="tab-content hidden space-y-4">
-      <div class="flex justify-between items-center border-b border-darkborder pb-2">
-        <h2 class="text-sm font-bold text-sky-400 uppercase">08. Central de Aplicativos, Portais & Efemérides de Luz</h2>
+    <!-- MÓDULO 8: APPS & EFEMÉRIDES -->
+    <section id="m8" class="tab-content hidden space-y-5">
+      <div class="flex justify-between items-center border-b border-darkborder pb-2.5">
+        <h2 class="text-base font-bold text-sky-400 uppercase font-mono">08. Central de Aplicativos & Efemérides de Luz</h2>
         <span class="status-badge bg-emerald-950 text-emerald-400 border border-emerald-800">Operacional</span>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-        <a href="https://www.road.is/" target="_blank" class="p-3 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+        <a href="https://www.road.is/" target="_blank" class="p-3.5 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">Road.is (Vegagerðin)</div>
-          <div class="text-[10px] text-slate-400 mt-1">Estado de estradas e fechamento de acessos F</div>
+          <div class="text-slate-400 text-[11px] mt-1">Estradas & Acessos F</div>
         </a>
-        <a href="https://en.vedur.is/" target="_blank" class="p-3 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+        <a href="https://en.vedur.is/" target="_blank" class="p-3.5 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">Vedur.is</div>
-          <div class="text-[10px] text-slate-400 mt-1">Meteorologia oficial & mapa de Aurora Boreal</div>
+          <div class="text-slate-400 text-[11px] mt-1">Previsão & Aurora Boreal</div>
         </a>
-        <a href="https://parka.is/" target="_blank" class="p-3 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+        <a href="https://parka.is/" target="_blank" class="p-3.5 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">Parka.is</div>
-          <div class="text-[10px] text-slate-400 mt-1">Pagamento de estacionamentos e parques</div>
+          <div class="text-slate-400 text-[11px] mt-1">Estacionamentos Islândia</div>
         </a>
-        <a href="https://www.veggjald.is/" target="_blank" class="p-3 bg-darkcard rounded border border-darkborder hover:border-sky-500 block">
+        <a href="https://www.veggjald.is/" target="_blank" class="p-3.5 bg-darkcard rounded-lg border border-darkborder hover:border-sky-500 block">
           <div class="font-bold text-sky-400">Veggjald.is</div>
-          <div class="text-[10px] text-slate-400 mt-1">Pedágio do túnel de Akureyri (Vaðlaheiðargöng)</div>
+          <div class="text-slate-400 text-[11px] mt-1">Túnel de Akureyri</div>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">JANELAS DE ILUMINAÇÃO NA ISLÂNDIA (GMT)</div>
-          <ul class="list-disc list-inside space-y-1 text-slate-300">
-            <li><strong>08 a 15/09 (Janela Crítica de Aurora):</strong> Lua Minguante transitando para Lua Nova em 11/09 (0% de disco iluminado; escuridão astronômica total ideal).</li>
-            <li><strong>17 a 19/09:</strong> Lua permanece abaixo do horizonte durante as horas noturnas.</li>
-            <li><strong>20 a 22/09 (Fotografia de Relevo):</strong> Lua Crescente (69% a 85% iluminada; iluminação lateral natural para montanhas e glaciares).</li>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 font-mono text-xs">
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-2.5">
+          <div class="text-sky-400 font-bold border-b border-darkborder/60 pb-1.5">JANELAS DE LUZ NA ISLÂNDIA (GMT)</div>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-200">
+            <li><strong>08 a 15/09 (Aurora Boreal):</strong> Lua Minguante até a Lua Nova em 11/09 (0% iluminação; escuridão total para o sensor).</li>
+            <li><strong>17 a 19/09:</strong> Lua permanece abaixo do horizonte durante a noite astronômica.</li>
+            <li><strong>20 a 22/09 (Fotografia de Relevo):</strong> Lua Crescente (69% a 85% iluminada; iluminação lateral de montanhas e glaciares).</li>
           </ul>
         </div>
 
-        <div class="p-4 bg-darkcard rounded border border-darkborder space-y-2">
-          <div class="text-sky-400 font-bold border-b border-darkborder/50 pb-1">EFEMÉRIDES SOLARES EM CHICAGO (CDT)</div>
-          <ul class="list-disc list-inside space-y-1 text-slate-300">
+        <div class="p-5 bg-darkcard rounded-lg border border-darkborder space-y-2.5">
+          <div class="text-sky-400 font-bold border-b border-darkborder/60 pb-1.5">EFEMÉRIDES SOLARES EM CHICAGO (CDT)</div>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-200">
             <li><strong>02/09:</strong> Sol 06:17 &ndash; 19:22 | Pôr da Lua: 12:31 | Minguante (71%)</li>
             <li><strong>04/09:</strong> Sol 06:19 &ndash; 19:18 | Pôr da Lua: 14:58 | Quarto Minguante (48%)</li>
             <li><strong>07/09:</strong> Sol 06:22 &ndash; 19:13 | Nascer da Lua: 01:56 | Minguante (15%)</li>
-            <li><strong>Golden Hour Vespertina:</strong> Entre 18:45 e 19:20 para fotos arquitetônicas no Riverwalk e Millennium Park.</li>
+            <li><strong>Golden Hour:</strong> Janela entre 18:45 e 19:20 para fotografia no Chicago Riverwalk e Millennium Park.</li>
           </ul>
         </div>
       </div>
